@@ -67,6 +67,7 @@ function setup(){
   var nextCard = document.getElementById("nextCard");
   var nextCardContainer = document.getElementById("nextCardContainer");
   var currentCard = document.getElementById("currentCard");
+  var help = document.getElementById('helpModal');
   shuffle();
   setCurrentCard(index);
   index=(index+1)%numQuestions;
@@ -103,8 +104,6 @@ function resetCards() {
 
 
 /*==========   HELP MODAL   ==========*/
-var help = document.getElementById('helpModal');
-
 /*=====  Toggle Modal Visibility =====*/
 function showHelp() {
     help.style.display = "flex";
