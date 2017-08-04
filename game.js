@@ -11,12 +11,6 @@ Array.prototype.swap = function (i, j) {
 
 
 /*==========   GAME CODE   ==========*/
-/*=====  Game Objects  =====*/
-var nextCard = document.getElementById("nextCard");
-var nextCardContainer = document.getElementById("nextCardContainer");
-var currentCard = document.getElementById("currentCard");
-
-
 /*=====  Card Content Variables  =====*/
 var questions = ["Why do donuts have holes?", 
                  "Who invented the modern flush toilet?",
@@ -69,6 +63,10 @@ function flip() {
 
 // Run On Start
 function setup(){
+  /*=====  Game Objects  =====*/
+  var nextCard = document.getElementById("nextCard");
+  var nextCardContainer = document.getElementById("nextCardContainer");
+  var currentCard = document.getElementById("currentCard");
   shuffle();
   setCurrentCard(index);
   index=(index+1)%numQuestions;
