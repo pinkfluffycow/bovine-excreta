@@ -1,0 +1,591 @@
+/*==========   GENERAL   ==========*/
+* {box-sizing:border-box}
+
+body {
+  margin: 225px 0 0 0;
+  text-align: center;
+  overflow:hidden;
+  /*=== TEST ===*/background: radial-gradient(circle, #0ba7f0,#0b4aae);
+}
+
+a {
+  text-decoration: none;
+}
+
+.verticalAlign {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*=====  Title  =====*/
+.titleText {
+  font-family: 'Satisfy', cursive;
+  font-size: 300%;
+}
+
+
+
+
+/*==========   CARDS   ==========*/
+/*=====   General  =====*/
+.flip-container {
+  perspective: 1000px;
+  margin: 0 auto;
+  width: 40%;
+  height: 370px;
+}
+
+/* card dimensions */
+.front, .back {
+  width: 100%;
+  height: 370px;
+  border-radius: 15px;
+  /*border: 2px solid #0b80d0;*/
+  /*=== TEST ===*/border: 3px solid #0b4aae;
+  background-color: #e1eff9;
+}
+
+/* flip speed */
+.flipper {
+  transition: 0.75s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* hide back during flip */
+.front, .back {
+  backface-visibility: hidden;
+  padding: 20px;
+  position: absolute;
+}
+
+.front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.vertical.flip-container {
+  position: relative;
+}
+
+.vertical .back {
+  transform: rotateX(180deg);
+}
+
+.vertical.flip-container .flipper {
+  transform-origin: 100% 185px; /* half of height */
+}
+
+/* rotates card */
+.flip-container.hover .flipper, .flip-container.flip .flipper {
+  transform: rotateX(180deg);
+}
+
+/*=====   Content   =====*/
+.question {
+  font-size: 50px;
+  line-height:200%;
+}
+
+.answer{
+  font-size:25px;
+  line-height:150%;
+}
+
+/*=====   Animated Card   =====*/
+#nextCardContainer {
+  position: absolute;
+  right: 0;
+  z-index:1;
+  width:40%;
+  height:370px;
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+}
+
+#nextCard{
+  transform: translateX(100%);
+  -webkit-transform: translateX(100%);
+  width:100%;
+}
+
+.container-slide-in {
+  animation: xAxis .75s linear;
+  -webkit-animation: xAxis .75s linear;
+}
+.slide-in {
+  animation: yAxis .75s;
+  -webkit-animation: yAxis .75s;
+}
+
+@keyframes xAxis {
+	0% { transform: translateX(125%) rotate(50deg); }
+  100% { transform: translateX(-75%) rotate(00deg); }
+}
+@-webkit-keyframes xAxis {
+  0% { transform: translateX(125%) rotate(50deg); }
+  100% { transform: translateX(-75%) rotate(00deg); }
+}
+
+@keyframes yAxis {
+  0%{
+    animation-timing-function: ease-out;
+    transform: translateY(0px);
+  }
+  50% {
+    animation-timing-function: ease-in;
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@-webkit-keyframes yAxis {
+  0%{
+    animation-timing-function: ease-out;
+    transform:translateY(0px);
+  }
+  50% {
+    animation-timing-function: ease-in;
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/*=====  Responsive Cards  =====*/
+@media only screen and (max-width: 1650px) {
+  .flip-container {
+    height: 350px;
+  }
+  #nextCardContainer {
+    height:350px;
+  }
+  .front, .back {
+    height: 350px;
+  }
+  .vertical.flip-container .flipper {
+    transform-origin: 100% 175px;
+  }
+}
+@media only screen and (max-width: 1550px) {
+  .flip-container {
+    width: 50%;
+    height: 340px;
+  }
+  #nextCardContainer {
+    width: 50%;
+    height: 340px;
+  }
+  .front, .back {
+    height: 340px;
+  }
+  .answer{
+    font-size: 24px;
+  }
+  .vertical.flip-container .flipper {
+    transform-origin: 100% 170px;
+  }
+  @keyframes xAxis {
+	0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-50%) rotate(00deg); }
+  }
+  @-webkit-keyframes xAxis {
+    0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-50%) rotate(00deg);}
+  }
+}
+@media only screen and (max-width: 1150px) {
+  .flip-container {
+    width: 60%;
+  }
+  #nextCardContainer {
+    width: 60%;
+  }
+  .question {
+    font-size: 45px;
+  }
+  .answer{
+    font-size: 23px;
+  }
+  @keyframes xAxis {
+	0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-33.33%) rotate(00deg); }
+  }
+  @-webkit-keyframes xAxis {
+    0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-33.33%) rotate(00deg);}
+  }
+}
+@media only screen and (max-width: 900px) {
+  .flip-container {
+    width: 80%;
+  }
+  #nextCardContainer {
+    width: 80%;
+  }
+  .question {
+    font-size: 40px;
+  }
+  .answer{
+    font-size: 22px;
+  }
+  @keyframes xAxis {
+	0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-12.5%) rotate(00deg); }
+  }
+  @-webkit-keyframes xAxis {
+    0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-12.5%) rotate(00deg);}
+  }
+}
+@media only screen and (max-width: 650px) {
+  .flip-container {
+    height: 300px;
+    width: 90%;
+  }
+  #nextCardContainer {
+    height: 300px;
+    width: 90%;
+  }
+  .front, .back {
+    height: 300px;
+  }
+  .question {
+    font-size: 40px;
+  }
+  .answer{
+    font-size: 20px;
+  }
+  .vertical.flip-container .flipper {
+    transform-origin: 100% 150px;
+  }
+  @keyframes xAxis {
+	0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-5.5%) rotate(00deg); }
+  }
+  @-webkit-keyframes xAxis {
+    0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-5.5%) rotate(00deg);}
+  }
+}
+@media only screen and (max-width: 500px){
+  .answer{
+    font-size: 18px;
+  }
+}
+@media only screen and (max-width: 450px){
+  .answer{
+    font-size: 16px;
+  }
+}
+@media only screen and (max-width: 375px){
+  .flip-container {
+    width: 95%;
+  }
+  #nextCardContainer {
+    width: 95%;
+  }
+  .answer{
+    font-size: 14px;
+  }
+  @keyframes xAxis {
+	0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-2.67%) rotate(00deg); }
+  }
+  @-webkit-keyframes xAxis {
+    0% { transform: translateX(125%) rotate(50deg); }
+    100% { transform: translateX(-2.67%) rotate(00deg);}
+  }
+  .btn-container > .btn-push {
+    padding: 15px 20px;
+  }
+}
+
+
+
+
+/*==========   NAVIGATION BAR   ==========*/
+.cardNav{
+  height: 50px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+/*=====  Flip Button  =====*/
+.btn-container {
+  display: inline-block;
+  padding: 20px 0;
+}
+
+.btn-push {
+  margin-top: 10px;
+  /*border: 1px solid #0996d8;*/
+  /*=== TEST ===*/border: 1px solid #0db1c6;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  /*
+  -webkit-box-shadow: 0px 5px 0px #0996d8;
+  -moz-box-shadow: 0px 5px 0px #0996d8;
+  -ms-box-shadow: 0px 5px 0px #0996d8;
+  -o-box-shadow: 0px 5px 0px #0996d8;
+  box-shadow: 0px 5px 0px #0996d8;
+  */
+  /*=== TEST ===*/
+  -webkit-box-shadow: 0px 5px 0px #0db1c6;
+  -moz-box-shadow: 0px 5px 0px #0db1c6;
+  -ms-box-shadow: 0px 5px 0px #0db1c6;
+  -o-box-shadow: 0px 5px 0px #0db1c6;
+  box-shadow: 0px 5px 0px #0db1c6;
+
+  padding: 15px 50px;
+  /*background: #b5e4fa;*/
+  /*=== TEST ===*/background: #b6e7ed;
+  font-family: "Open Sans";
+  font-size: 25px;
+  color: #222;
+  text-shadow: 1px 1px 1px #e6f6fd;
+  transition: All 250ms ease;
+  -webkit-transition: All 250ms ease;
+  -moz-transition: All 250ms ease;
+  -o-transition: All 250ms ease;
+  -ms-transition: All 250ms ease;
+}
+.btn-push:active {
+  position: relative;
+  top: 5px;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  transition: All 250ms ease;
+  -webkit-transition: All 250ms ease;
+  -moz-transition: All 250ms ease;
+  -o-transition: All 250ms ease;
+  -ms-transition: All 250ms ease;
+}
+
+/*=====   Navigation Buttons   =====*/
+.navButton{
+  cursor: pointer;
+  vertical-align:middle;
+  height: 100%;
+  /*border: 1px solid #0b80d0;*/
+  /*=== TEST ===*/border: 1px solid #0db1c6;
+  padding: 14px 15px;
+  box-sizing: border-box;
+  transition: 0.6s ease;
+  font-family: "Lucida Console", Monaco, monospace;
+  font-size: 25px;
+  color: black;
+  line-height: 100%;
+}
+.navButton:hover {
+  background-color: #9ddbf9;
+    /*#dcdcdc;*/
+}
+
+#help {
+  margin-right: 10px;
+  border-radius: 7.5px 0 0 7.5px;
+  font-weight:bold;
+}
+
+#next {
+  margin-left: 10px;
+  border-radius: 0 7.5px 7.5px 0;
+}
+
+
+
+
+
+/*==========   HELP MODAL   ==========*/
+/*=====   Modal Sections  =====*/
+/* Modal (Background) */
+.modal {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 1000px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: zoom;
+  animation-duration: 0.4s;
+  display: inline-block;
+  border-radius: 15px;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: #0ba7f0;
+  color: white;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.modal-body {
+  padding: 0px;
+  margin: 0px;
+  height: 300px;
+}
+
+.modal-footer {
+  bottom:0px;
+  padding: 10px 16px;
+  background-color: #0ba7f0;
+  color: white;
+  border-radius: 0px 0px 15px 15px;
+}
+
+/*=====   Close Button  =====*/
+.close {
+    color: white;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*=====  Modal Zoom Animation  =====*/
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+
+
+
+
+/*==========   HELP SLIDESHOW   ==========*/
+/*=====  Slideshow Layers  =====*/
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+  height:100%;
+  display: flex;
+  align-items: center;
+}
+
+.mySlides {
+  display:none;
+}
+
+/*=====  Slide Content =====*/
+/* Slide Number */
+.numbertext {
+  color: black;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+  font-family: Verdana,sans-serif;
+}
+
+/* Slide Text */
+.slide-content {
+  padding: 50px;
+  text-align: center;
+  font-family: Verdana,sans-serif;
+  line-height: 150%;
+}
+
+/* Step Number Caption */
+.text {
+  color: black;
+  font-size: 17px;
+  font-weight: bold;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+  font-family: Verdana,sans-serif;
+}
+
+/*=====  Next & Previous Buttons =====*/
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    width: auto;
+    padding: 16px;
+    color: #73bbfc;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+.prev:hover, .next:hover {
+  background-color: rgba(220,220,220,0.8);
+  color: #0d54c6;
+}
+
+/*=====  Dot Indicators =====*/
+.dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Slide Fade Animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
