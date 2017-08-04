@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bovine Excreta</title>
+    <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="game.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body onload="setup();">
+
+    <h1 class="titleText" >Bovine Excreta</h1>  
+
+    <!-------   GAME CARDS   ------->
+    <!-- Animated Card -->
+    <div id="nextCardContainer">
+      <div id="nextCard" class="flip-container vertical " ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+          <!-- Front -->
+          <div class="front verticalAlign">
+            <p id="nextQuestion" class="question">Who invented the modern flush toilet?</p>
+          </div>
+          <!-- Back -->
+          <div class="back verticalAlign">
+            <p id="nextAnswer" class="answer">When hole-less donuts were fried, the centers would be undercooked and inedible. A man named Captain Hanson Gregory discovered that when he fried donuts with holes in them would be cooked evenly, and donuts have had holes ever since. </p>                     
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Stationary Card -->
+    <div id="currentCard" class="flip-container vertical" ontouchstart="this.classList.toggle('hover');">
+      <div class="flipper">
+        <div class="front verticalAlign" title="Question">
+          <!-- Front -->
+          <p id="currentQuestion" class="question">Why do donuts have holes?</p>
+        </div>
+        <div class="back verticalAlign" title="Answer">
+          <!-- Back -->
+          <p id="currentAnswer" class="answer">When hole-less donuts were fried, the centers would be undercooked and inedible. A man named Captain Hanson Gregory discovered that when he fried donuts with holes in them would be cooked evenly, and donuts have had holes ever since. </p> 
+        </div>
+      </div>
+    </div>
+    
+    <!-------   NAVIGATION BAR   ------->
+    <div class="cardNav verticalAlign">
+      <!-- Help Button -->
+      <a id="help" class="navButton" onclick="showHelp()" href="javascript:return false;" title="Help">?</a>
+      <!-- Flip Card Button -->
+      <p class="btn-container">
+        <a class="btn-push" onclick="flip()" href="javascript:return false;">Flip Card</a>
+      </p>
+      <!-- Next Card Button -->
+      <a id="next" class="navButton" onclick="newCard()" href="javascript:return false;" title="Next Card">&#10095;</a>
+    </div>
+  
+    <!-------   HELP MODAL   ------->
+    <div id="helpModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- Close Button -->
+          <span class="close" onclick="hideHelp()">&times;</span>
+          <!-- Help Modal Title -->
+          <h2>Instructions</h2>
+        </div>
+        <div class="modal-body">
+          <div class="slideshow-container">
+            <div class="mySlides fade">
+              <div class="numbertext">1 / 4</div>
+              <div class="slide-content">
+                This is a turn-based game played with two or more players.
+                <br><br>
+                During their turn, the active player first reads the question on their card out loud to the other players and silently reads the 
+                answer on their card.
+                <br><br>
+                The active player can then either repeat the true answer to the question in their own words or "Bullsh*t" and make up a false 
+                answer. They may refer to the true answer on their card for reference.
+              </div>
+              <div class="text">Step One</div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 4</div>
+              <div class="slide-content">
+                Once the active player has finished, the other players guess whether the active player's answer is true or false.
+                When all players have stated their guesses, the active player reveals if they told the truth or not.
+              </div>
+              <div class="text">Step Two</div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">3 / 4</div>
+              <div class="slide-content">
+                All players begin the game with zero points.
+                Each player that guessed correctly gains one point. If not, they do not gain or lose any points.
+              </div>
+              <div class="text">Step Three</div>
+            </div>
+
+            <div class="mySlides fade">
+              <div class="numbertext">4 / 4</div>
+              <div class="slide-content">
+                The device is then passed to the next player, who presses the "next" button for the next card.
+                <br><br>
+                This process is repeated until at least one player accumulates 10 points, becoming the winner of the round.
+              </div>
+              <div class="text">Step Four</div>
+            </div>
+            
+            <!-- Slide Navigation Buttons -->
+            <a class="prev" onclick="plusSlides(-1)" title="Previous Step">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)" title="Next Step">&#10095;</a>
+
+            </div>
+            <br>
+        </div>
+        <div class="modal-footer">
+          <!-- Slide Dot Indicators -->
+          <div style="text-align:center">
+              <span class="dot" onclick="currentSlide(1)"></span> 
+              <span class="dot" onclick="currentSlide(2)"></span> 
+              <span class="dot" onclick="currentSlide(3)"></span> 
+              <span class="dot" onclick="currentSlide(4)"></span> 
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
